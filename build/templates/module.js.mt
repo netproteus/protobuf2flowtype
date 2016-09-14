@@ -12,9 +12,9 @@ exports.builder = _.builder;
 
 /*:: #*/
 
-    import {Protobuf$Message} from 'protobuf-flow-runtime';
+    import {Protobuf$Message} from 'protobuf2flowtype';
 
-    import type {ByteBuffer, ProtoBuf$Builder, ProtoBuf$MessageLiteral, Protobuf$RefectType} from 'protobuf-flow-runtime';
+    import type {ByteBuffer, ProtoBuf$Builder, ProtoBuf$MessageLiteral, Protobuf$RefectType} from 'protobuf2flowtype';
 
     {{#imports}}
 
