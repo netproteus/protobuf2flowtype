@@ -8,6 +8,10 @@ dependencies:
   override:
     - npm install --dev
 
+test:
+  post:
+    - bash <(curl -s https://codecov.io/bash) || true
+
 deployment:
   release:
     tag: /v\d+\.\d+\.\d+/

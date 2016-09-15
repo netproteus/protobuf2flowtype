@@ -1,3 +1,7 @@
 .idea
 node_modules
 examples
+.nyc_output
+coverage
+tests
+*.coverage.txt
