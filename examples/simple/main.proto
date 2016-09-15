@@ -1,0 +1,13 @@
+package foo;
+
+message Greeting {
+
+    required string text = 1;
+
+};
+
+message Chat {
+
+    required Greeting greeting = 1;
+    optional string body = 2;
+};

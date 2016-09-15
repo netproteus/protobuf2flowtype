@@ -7,14 +7,17 @@
     "protobufjs": "^5.0.1"
   },
   "devDependencies": {
+    "babel-eslint": "^6.1.2",
     "babel-generator": "^6.14.0",
     "babylon": "^6.9.1",
+    "eslint": "^3.5.0",
+    "eslint-plugin-flowtype": "^2.17.1",
     "fs-extra": "^0.30.0",
     "mustache": "^2.2.1",
     "yargs": "^5.0.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint build/"
   },
   "repository": {
     "type": "git",

@@ -406,7 +406,7 @@ function clean(code) {
  * @returns {string}
  */
 function camelCase(str, next) {
-    let output = ''
+    let output = '';
     for (const c of str) {
         if (c === '_') {
             next = true;
@@ -431,7 +431,7 @@ function processProto(protoFile, root) {
     const protPath = path.format({
         dir: root,
         base: protoFile
-    })
+    });
     const parser = new ProtoBuf.DotProto.Parser(fs.readFileSync(protPath));
     const protoAst = parser.parse();
 
