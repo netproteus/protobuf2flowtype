@@ -28,5 +28,14 @@
   "bugs": {
     "url": "https://github.com/netproteus/protobuf2flowtype/issues"
   },
-  "homepage": "https://github.com/netproteus/protobuf2flowtype#readme"
+  "homepage": "https://github.com/netproteus/protobuf2flowtype#readme",
+  "directories": {
+    "example": "examples"
+  },
+  "keywords": [
+    "protobuf",
+    "proto",
+    "flow",
+    "flowtype"
+  ]
 }
