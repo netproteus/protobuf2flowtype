@@ -1,3 +1,4 @@
+[![npm version](https://badge.fury.io/js/protobuf2flowtype.svg)](https://badge.fury.io/js/protobuf2flowtype)
 # protobuf2flowtype
 
 The aim of this project is to allow [flowtype](https://flowtype.org/) checking of protobuf messages created using [protobufjs](https://github.com/dcodeIO/protobuf.js)
