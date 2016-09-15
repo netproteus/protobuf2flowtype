@@ -7,3 +7,11 @@ dependencies:
     - echo -e "$NPM_USER\n$NPM_PASS\n$NPM_EMAIL" | npm login
   override:
     - npm install --dev
+
+deployment:
+  release:
+    tag: /v\d+\.\d+\.\d+/
+    owner: netproteus
+    commands:
+      - npm publish
+      
