@@ -10,7 +10,7 @@ dependencies:
 
 test:
   post:
-    - bash <(curl -s https://codecov.io/bash) || true
+    - node_modules/.bin/codecov --disable=gcov -t ${CODECOV_TOKEN}
 
 deployment:
   release:
