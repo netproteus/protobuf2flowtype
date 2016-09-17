@@ -10,6 +10,7 @@ dependencies:
 
 test:
   post:
+    - cp coverage/lcov.info ${CIRCLE_ARTIFACTS}
     - node_modules/.bin/codecov --disable=gcov -t ${CODECOV_TOKEN}
 
 deployment:
