@@ -6,13 +6,13 @@ dependencies:
   pre:
     - echo -e "$NPM_USER\n$NPM_PASS\n$NPM_EMAIL" | npm login
   override:
-    - npm install --dev
+    - npm install --only=dev
 
 test:
   post:
     - cp coverage/lcov.info ${CIRCLE_ARTIFACTS}
     - perl -pe 's/\/home\/ubuntu\/protobuf2flowtype/\/Users\/william\/work\/protobuf2flowtype/g' -i coverage/lcov.info
-    - node_modules/.bin/codecov --disable=gcov -t ${CODECOV_TOKEN}
+    - bash <(curl -s https://codecov.io/bash) -X gcov -X coveragepy -X xcode || true
 
 deployment:
   release:
