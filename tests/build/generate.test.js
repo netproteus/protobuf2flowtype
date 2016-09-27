@@ -5,12 +5,11 @@ module.exports = {
         const generate = require('../../build/generate');
         try {
             generate();
-        }
-        catch(e) {
+        } catch (e) {
             console.log(e);
         }
         test.done();
 
     }
 
-}
+};

@@ -22,7 +22,7 @@
     "yargs": "^5.0.0"
   },
   "scripts": {
-    "test": "eslint build/ && nyc nodeunit tests/**/*"
+    "test": "eslint build/ && eslint tests/ && nyc nodeunit tests/**/*"
   },
   "repository": {
     "type": "git",

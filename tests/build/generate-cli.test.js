@@ -1,7 +1,5 @@
-const rewire = require('rewire');
 const mock = require('mock-require');
 const cli = require('mock-cli');
-
 
 function runCli(test, args, generateFn, errorHandler) {
 
@@ -23,7 +21,7 @@ function runCli(test, args, generateFn, errorHandler) {
                 return;
             }
 
-            resolve();
+            resolve(result);
         });
 
         mock.reRequire('../../build/generate-cli');
