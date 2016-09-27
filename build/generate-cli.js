@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
 const {version} = require('../package.json');
-const generate = require('./generate');
 const yargs = require('yargs');
+
+const generate = require('./generate');
 
 const options = yargs
     .usage('Protobuf flowtype generator')
@@ -25,6 +26,7 @@ const options = yargs
     })
     .alias('help', 'h')
     .alias('version', 'v')
+    .exitProcess(false)
     .check(function(args) {
         if (!args.outDir) {
             return 'Must specify an outDir';
