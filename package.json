@@ -19,7 +19,7 @@
     "nodeunit": "^0.10.2",
     "nyc": "^8.3.0",
     "rewire": "^2.5.2",
-    "yargs": "^5.0.0"
+    "yargs": "^6.0.0"
   },
   "scripts": {
     "test": "eslint build/ && eslint tests/ && nyc nodeunit tests/**/*"
