@@ -1,0 +1,31 @@
+package com;
+
+enum Result {
+    SUCCESS = 0;
+    FAILURE = 1;
+}
+
+message Container {
+    oneof value {
+        double doubleValue = 1;
+        float floatValue = 2;
+        int64 int64Value = 3;
+        uint64 uint64Value = 4;
+        int32 int32Value = 5;
+        fixed64 fixed64Value = 6;
+        fixed32 fixed32Value = 7;
+        bool boolValue = 8;
+        string stringValue = 9;
+        bytes bytesValue = 10;
+        uint32 uint32Value = 11;
+        sfixed32 sfixed32Value = 12;
+        sfixed64 sfixed64Value = 13;
+        sint32 sint32Value = 14;
+        sint64 sint64Value = 15;
+        Result resultValue = 16;
+    }
+}
+
+message Generic {
+    required string test = 1;
+}

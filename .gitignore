@@ -3,3 +3,6 @@ node_modules
 .nyc_output
 coverage
 *.coverage.txt
+examples/**/*.js
+!examples/*.js
+!examples/**/*.proto

@@ -4,6 +4,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+/*:: #*/
+import {builder} from '../index';
+export {builder};
+/*$ */
+
 const _ = require('../index');
 
 exports.builder = _.builder;
@@ -12,9 +17,9 @@ exports.builder = _.builder;
 
 /*:: #*/
 
-    import {Protobuf$Message} from 'protobuf2flowtype';
+    import {Protobuf$Message} from 'protobuf2flowtype-runtime';
 
-    import type {ByteBuffer, ProtoBuf$Builder, ProtoBuf$MessageLiteral, Protobuf$RefectType} from 'protobuf2flowtype';
+    import type {ByteBuffer, ProtoBuf$Builder, ProtoBuf$MessageLiteral, Protobuf$RefectType} from 'protobuf2flowtype-runtime';
 
     {{#imports}}
 
@@ -40,7 +45,7 @@ exports.builder = _.builder;
 
     {{#messages}}
 
-        interface {{name}}Interface extends ProtoBuf$MessageLiteral {
+        type {{name}}Interface = ProtoBuf$MessageLiteral & {
             {{#fields}}
                 {{name}}{{#optional}}?{{/optional}}: {{#voidable}}?{{/voidable}}{{{type.interface}}};
             {{/fields}}
