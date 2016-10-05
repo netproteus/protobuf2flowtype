@@ -172,7 +172,5 @@ Currently doesn't support
 * service definitions
 * map fields
 
-##TODO
-* tests
 
 
