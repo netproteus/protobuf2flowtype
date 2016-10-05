@@ -25,9 +25,9 @@
   },
   "scripts": {
     "test": "eslint build/ && eslint tests/ && nyc nodeunit tests/**/* && flow && if ! flow check-contents examples/simple-bad.js < examples/simple-bad.js | grep 'Found 3 errors'; then echo 'Flow Checking of simple-bad should fail with 3 Errors'; exit 1; fi && if ! flow check-contents examples/complex-bad.js < examples/complex-bad.js | grep 'Found 11 errors'; then echo 'Flow Checking of complex-bad should fail with 11 Errors'; exit 1; fi",
-    "preversion": "npm test",
+    "preversion": "git fetch origin && if [ -n \"$(git diff origin/master)\" ]; then echo 'Branch much match remote master'; exit 1; fi && npm test",
     "version": "bin/version.sh",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push origin master && git push origin --tags"
   },
   "repository": {
     "type": "git",
