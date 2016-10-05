@@ -1,10 +1,10 @@
 {
   "name": "protobuf2flowtype",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Given protobuf file will generate node packages which export protobufjs builders annotated with flowtype type anotations",
   "main": "runtime/index.js",
   "dependencies": {
-    "protobuf2flowtype-runtime": "2.0.4",
+    "protobuf2flowtype-runtime": "2.0.5",
     "protobufjs": "^5.0.1"
   },
   "devDependencies": {
