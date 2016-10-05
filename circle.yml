@@ -19,4 +19,5 @@ deployment:
     owner: netproteus
     commands:
       - npm publish
+      - cd runtime; npm publish
       
