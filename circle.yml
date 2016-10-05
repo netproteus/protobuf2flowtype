@@ -19,6 +19,8 @@ deployment:
     tag: /v\d+\.\d+\.\d+/
     owner: netproteus
     commands:
-      - npm publish
       - cd runtime; npm publish
+      - npm unlink runtime
+      - npm publish
+
       
