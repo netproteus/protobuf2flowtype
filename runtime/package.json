@@ -1,0 +1,16 @@
+{
+  "name": "protobuf2flowtype-runtime",
+  "version": "1.0.3",
+  "description": "Base flowtype type annotations for protobuf",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/netproteus/protobuf2flowtype.git"
+  },
+  "author": "William Lewis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/netproteus/protobuf2flowtype/issues"
+  },
+  "homepage": "https://github.com/netproteus/protobuf2flowtype#readme"
+}

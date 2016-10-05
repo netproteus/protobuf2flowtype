@@ -1,0 +1,23 @@
+package com.example.test;
+
+import "base.proto";
+import "module1.proto";
+import "module2.proto";
+
+
+message Test1 {
+    required Container value  = 1;
+    required Result result = 2;
+}
+
+message Test2 {
+    required com.foobar.module1.Module1Test module1_test = 1;
+    repeated com.foobar.module1.Module1Test.SubMessage module1_sub_test = 2;
+}
+
+message Test3 {
+    required Generic base_generic = 1;
+    optional com.example.module2.Generic module2_generic1 = 2;
+    optional example.module2.Generic module2_generic2 = 3;
+    optional module2.Generic module2_generic3 = 4;
+}

@@ -1,8 +1,14 @@
 package foo;
 
+enum GreetingType {
+    HELLO = 0;
+    GOODBYE = 1;
+}
+
 message Greeting {
 
-    required string text = 1;
+    required GreetingType type = 1;
+    required string text = 2;
 
 };
 

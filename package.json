@@ -4,6 +4,7 @@
   "description": "Given protobuf file will generate node packages which export protobufjs builders annotated with flowtype type anotations",
   "main": "runtime/index.js",
   "dependencies": {
+    "protobuf2flowtype-runtime": "file:runtime",
     "protobufjs": "^5.0.1"
   },
   "devDependencies": {
@@ -12,6 +13,7 @@
     "babylon": "^6.10.0",
     "eslint": "^3.5.0",
     "eslint-plugin-flowtype": "^2.17.1",
+    "flow-bin": "^0.33.0",
     "fs-extra": "^0.30.0",
     "mock-cli": "^0.1.2",
     "mock-require": "^1.3.0",
@@ -22,7 +24,10 @@
     "yargs": "^6.0.0"
   },
   "scripts": {
-    "test": "eslint build/ && eslint tests/ && nyc nodeunit tests/**/*"
+    "test": "eslint build/ && eslint tests/ && nyc nodeunit tests/**/* && flow && if ! flow check-contents examples/simple-bad.js < examples/simple-bad.js | grep 'Found 3 errors'; then echo 'Flow Checking of simple-bad should fail with 3 Errors'; exit 1; fi && if ! flow check-contents examples/complex-bad.js < examples/complex-bad.js | grep 'Found 11 errors'; then echo 'Flow Checking of complex-bad should fail with 11 Errors'; exit 1; fi",
+    "preversion": "npm test",
+    "version": "bin/version.sh",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",

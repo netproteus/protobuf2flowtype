@@ -6,7 +6,7 @@ dependencies:
   pre:
     - echo -e "$NPM_USER\n$NPM_PASS\n$NPM_EMAIL" | npm login
   override:
-    - npm install --only=dev
+    - npm install
 
 test:
   post:

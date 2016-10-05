@@ -1,0 +1,6 @@
+package com.example.module2;
+
+
+message Generic {
+    required int32 another_test = 1;
+}

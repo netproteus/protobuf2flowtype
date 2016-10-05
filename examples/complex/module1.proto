@@ -1,0 +1,12 @@
+package com.foobar.module1;
+
+message Module1Test {
+
+    message SubMessage {
+        required string my_sub_data = 1;
+    }
+
+    required int32 my_data1 = 1;
+    optional string my_data2 = 2;
+    optional SubMessage my_sub_msg = 3;
+}

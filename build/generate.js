@@ -115,6 +115,13 @@ class Namespace {
     }
 
     /**
+     * Resets the Namespace cache
+     */
+    static reset() {
+        delete Namespace.spaces;
+    }
+
+    /**
      * Generates flowtype definitions for this Namespace and rescursivly upwards to root
      *
      * @param moduleTemplate - mustache template to use for module
@@ -129,7 +136,7 @@ class Namespace {
         const result = this.result = {};
 
         if (!this.parent) {
-            const code = mustache.render(rootTemplate, {
+            const code = rootTemplate.render({
                 jsonDescriptor: jsonDescriptor
             });
             result[''] = clean(code);
@@ -187,7 +194,7 @@ class Namespace {
             };
         }
 
-        const code = mustache.render(moduleTemplate, data);
+        const code = moduleTemplate.render(data);
 
 
         result[this.name.replace(/\./g, '/')] = clean(code);
@@ -267,6 +274,11 @@ class Namespace {
 
         switch (typeClassification) {
             case 'message':
+
+                if (imports.filter(imp => imp.types[0].alias === (alias + 'Interface')).length > 0) {
+                    break;
+                }
+
                 imports.push({
                     types: [{
                         name: name + 'Interface',
@@ -278,6 +290,11 @@ class Namespace {
                 });
                 break;
             case 'enum':
+
+                if (imports.filter(imp => imp.types[0].alias === (alias + 'Values')).length > 0) {
+                    break;
+                }
+
                 imports.push({
                     types: [{
                         name: name + 'Values',
@@ -302,7 +319,7 @@ class Namespace {
 
         let namespace = this;
         let lookup;
-        while (lookup = namespace.findName(typeParts.shift())) {
+        while (lookup = namespace.findName(typeParts.shift(), !typeParts.length)) {
             if (!(lookup instanceof Namespace)) {
                 return namespace;
             }
@@ -320,11 +337,12 @@ class Namespace {
      * Given a type name (last part) returns message, enum or namespace that matches
      *
      * @param name {string} - singular name i.e. no package names like com.lyst.MyType
+     * @param isLeaf {boolean} - is this a message|enum type, instead of a namespace
      * @returns {T|*}
      */
-    findName(name) {
-        return this.messages.filter(message => message.name === name)[0] ||
-            this.enums.filter(e => e.name === name)[0] ||
+    findName(name, isLeaf) {
+        return isLeaf && (this.messages.filter(message => message.name === name)[0] ||
+            this.enums.filter(e => e.name === name)[0]) ||
             this.children.filter(child => child.type === name)[0];
     }
 
@@ -389,7 +407,10 @@ function clean(code) {
                 'flow'
             ]
         });
-        const resultCode = generate(strip(ast).program, {}).code;
+
+        const cleanAst = strip(ast).program;
+
+        const resultCode = generate(cleanAst, {}).code;
 
         return resultCode.replace(/(\/\*\$ | \#\*\/)/g, '');
 
@@ -481,17 +502,20 @@ function generateFromProto(outputDir, inputProto, protoDir) {
         throw new Error('Generation Failed');
     }
 
+    Namespace.reset();
     const namespace = processProto(inputProto, protoDir);
     const code = namespace.generate(
-        jsonDescriptor,
-        fs.readFileSync(path.format({
-            dir: templateDir,
-            base: 'module.js.mt'
-        }), 'utf8'),
-        fs.readFileSync(path.format({
-            dir: templateDir,
-            base: 'root.js.mt'
-        }), 'utf8')
+        jsonDescriptor, {
+            render: data => mustache.render(fs.readFileSync(path.format({
+                dir: templateDir,
+                base: 'module.js.mt'
+            }), 'utf8'), data)
+        }, {
+            render: data => mustache.render(fs.readFileSync(path.format({
+                dir: templateDir,
+                base: 'root.js.mt'
+            }), 'utf8'), data)
+        }
     );
 
     for (const key of Object.keys(code)) {
