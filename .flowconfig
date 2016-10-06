@@ -1,3 +1,3 @@
 [ignore]
-<PROJECT_ROOT>/node_modules/protobufjs/src/bower.json
+<PROJECT_ROOT>/.*node_modules/.*protobufjs/src/bower.json
 <PROJECT_ROOT>/node_modules/json/.*
