@@ -1,3 +1,4 @@
 [ignore]
 <PROJECT_ROOT>/.*/src/bower.json
 <PROJECT_ROOT>/node_modules/json/.*
+<PROJECT_ROOT>/node_modules/protobuf2flowtype-runtime/node_modules/protobufjs/src/bower.json
