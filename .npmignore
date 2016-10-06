@@ -5,3 +5,7 @@ examples
 coverage
 tests
 *.coverage.txt
+codecov.yml
+circle.yml
+bin
+
