@@ -3,6 +3,9 @@
   "version": "2.0.6",
   "description": "Given protobuf file will generate node packages which export protobufjs builders annotated with flowtype type anotations",
   "main": "runtime/index.js",
+  "bin": {
+    "protobuf2flowtype": "build/generate-cli.js"
+  },
   "dependencies": {
     "protobuf2flowtype-runtime": "2.0.6",
     "protobufjs": "^5.0.1"
