@@ -7,7 +7,10 @@ Object.defineProperty(exports, "__esModule", {
 const jsonDescriptor = {{{jsonDescriptor}}};
 
 const ProtoBuf = require('protobufjs');
-const builder = exports.builder = ProtoBuf.loadJson(jsonDescriptor);
+const builder = exports.builder = new ProtoBuf.Builder();
+for (const ns of jsonDescriptor) {
+    builder['import'](ns.json, ns.filename);
+}
 
 /*:: #*/
 export {builder};
