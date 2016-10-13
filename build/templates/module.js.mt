@@ -67,6 +67,11 @@ exports.builder = _.builder;
             {{/oneOfs}}
         };
 
+        {{#oneOfs}}
+            type {{typeName}} = {{fieldTypes}};
+            export type { {{typeName}} };
+        {{/oneOfs}}
+
     {{/messages}}
 
     type {{dollar}} = {
