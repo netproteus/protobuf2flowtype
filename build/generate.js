@@ -4,7 +4,6 @@ const path = require('path');
 const mustache = require('mustache');
 const babylon = require('babylon');
 const generate = require('babel-generator').default;
-const jsonOutputter = require('protobufjs/cli/pbjs/targets/json');
 
 /**
  * Directory to load templates from
@@ -491,12 +490,26 @@ function generateFromProto(outputDir, inputProto, protoDir) {
     let jsonDescriptor;
 
     try {
+        class ImportBuilder extends ProtoBuf.Builder {
+
+            import(json, filename) {
+                this._imported = this._imported || [];
+
+                this._imported.push({
+                    filename: filename,
+                    json: json
+                });
+                super['import'](json, filename);
+            }
+        }
+
+        const importBuilder = new ImportBuilder();
         // This validates that proto is parsable
         const builder = ProtoBuf.loadProtoFile({
             root: protoDir,
             file: inputProto
-        });
-        jsonDescriptor = jsonOutputter(builder, {min: true});
+        }, importBuilder);
+        jsonDescriptor = JSON.stringify(builder._imported, undefined, 2);
     } catch (e) {
         console.error('Proto Parsing Failed', e);
         throw new Error('Generation Failed');
