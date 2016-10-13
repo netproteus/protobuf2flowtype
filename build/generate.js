@@ -163,11 +163,13 @@ class Namespace {
             const fqMessageName = this.name + '.' + message.name;
 
             localTypes[message.name] = 'message';
+            const typeCache = {};
             return {
                 name: message.name,
                 fields: message.fields.map(field => {
                     const fieldTypes = Namespace.getNamespace(fqMessageName)
                         .resolveType(field.type, localTypes, imports, field.rule === 'repeated');
+                    typeCache[field.id] = fieldTypes;
                     return {
                         name: field.name,
                         upperName: camelCase(field.name, true),
@@ -176,7 +178,14 @@ class Namespace {
                         voidable: field.rule === 'optional'
                     };
                 }),
-                oneOfs: Object.keys(message.oneofs).map(name => new Object({'name': name}))
+                oneOfs: Object.keys(message.oneofs).map(name => new Object({
+                    'name': name,
+                    'typeName': message.name + '$' + name,
+                    'fieldTypes': message.oneofs[name]
+                        .map(value => typeCache[value].builder)
+                        .filter((item, pos, arr) => arr.indexOf(item) === pos)
+                        .join('|')
+                }))
             };
         });
 
