@@ -459,7 +459,7 @@ module.exports = {
                     return result + msg.oneOfs.length;
                 }, 0),
                 enums: ctx.package.enums.length,
-                imports: ctx.package.imports.length
+                imports: ctx.package.imports.types.length
             }) || {};
 
         }
