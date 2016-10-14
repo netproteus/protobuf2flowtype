@@ -144,7 +144,10 @@ class Namespace {
 
         this.children.forEach(child => child.generate(jsonDescriptor, moduleTemplate, rootTemplate));
 
-        const imports = [];
+        const imports = {
+            types: [],
+            clazz: []
+        };
         const localTypes = {};
 
 
@@ -283,28 +286,33 @@ class Namespace {
         switch (typeClassification) {
             case 'message':
 
-                if (imports.filter(imp => imp.types[0].alias === (alias + 'Interface')).length > 0) {
+                if (imports.types.filter(imp => imp.names[0].alias === (alias + 'Interface')).length > 0) {
                     break;
                 }
 
-                imports.push({
-                    types: [{
+                imports.types.push({
+                    names: [{
                         name: name + 'Interface',
                         alias: alias + 'Interface'
-                    }, {
+                    }], location: prefix + '/' + namespace.name.replace(/\./g, '/')
+                });
+
+                imports.clazz.push({
+                    names: [{
                         name: name + 'Builder',
                         alias: alias + 'Builder'
                     }], location: prefix + '/' + namespace.name.replace(/\./g, '/')
                 });
+
                 break;
             case 'enum':
 
-                if (imports.filter(imp => imp.types[0].alias === (alias + 'Values')).length > 0) {
+                if (imports.types.filter(imp => imp.names[0].alias === (alias + 'Values')).length > 0) {
                     break;
                 }
 
-                imports.push({
-                    types: [{
+                imports.types.push({
+                    names: [{
                         name: name + 'Values',
                         alias: alias + 'Values'
                     }], location: prefix + '/' + namespace.name.replace(/\./g, '/')

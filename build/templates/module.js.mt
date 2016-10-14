@@ -23,11 +23,21 @@ exports.builder = _.builder;
 
     {{#imports}}
 
-    import type {
-      {{#types}}
-         {{name}} as {{alias}},
-      {{/types}}
-    } from '{{{location}}}';
+        {{#types}}
+            import type {
+                {{#names}}
+                    {{name}} as {{alias}},
+                {{/names}}
+            } from '{{{location}}}';
+        {{/types}}
+
+        {{#clazz}}
+            import {
+                {{#names}}
+                    {{name}} as {{alias}},
+                {{/names}}
+            } from '{{{location}}}';
+        {{/clazz}}
 
     {{/imports}}
 
@@ -85,12 +95,17 @@ exports.builder = _.builder;
 
     export type {
         {{#messages}}
-            {{name}}Interface, {{name}}Builder, {{name}}Reflect,
+            {{name}}Interface, {{name}}Reflect,
         {{/messages}}
         {{#enums}}
             {{name}}Values, {{name}}Options,
         {{/enums}}
     };
+
+    {{#messages}}
+        export { {{name}}Builder };
+    {{/messages}}
+
 /*$ */
 
     const namespace /*: {{dollar}} */ = _.builder.build('{{dots}}');
