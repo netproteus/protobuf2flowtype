@@ -1,6 +1,6 @@
 {
   "name": "protobuf2flowtype-runtime",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Base flowtype type annotations for protobuf",
   "main": "index.js",
   "repository": {
