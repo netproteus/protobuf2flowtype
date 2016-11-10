@@ -464,7 +464,7 @@ function camelCase(str, next) {
  * @param protoFile
  * @returns {Namespace}
  */
-function processProto(protoFile, root) {
+function processProto(protoFile, root, imported = []) {
     const protPath = path.format({
         dir: root,
         base: protoFile
@@ -472,7 +472,12 @@ function processProto(protoFile, root) {
     const parser = new ProtoBuf.DotProto.Parser(fs.readFileSync(protPath));
     const protoAst = parser.parse();
 
-    protoAst.imports.forEach(file => processProto(file, root));
+    imported.push(protoFile);
+    protoAst.imports.forEach(file => {
+        if (imported.indexOf(file) === -1) {
+            processProto(file, root, imported);
+        }
+    });
 
     return Namespace.getNamespace(protoAst.package).update(protoAst);
 }

@@ -1,5 +1,7 @@
 package com.foobar.module1;
 
+import "base.proto";
+
 message Module1Test {
 
     message SubMessage {
