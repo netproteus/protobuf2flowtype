@@ -14,7 +14,7 @@ The generated code has a runtime dependency on this module for flowtype checking
 
 ```
 npm install --save protobuf2flowtype
-node_modules/.bin/protobuf2flowtype --outDir src/proto --protoFile main.proto --protoDir proto
+node_modules/.bin/protobuf2flowtype --outDir src/proto --protoFile main.proto --protoRoot proto
 ```
 
 ### API
