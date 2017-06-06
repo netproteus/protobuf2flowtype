@@ -4,7 +4,7 @@
 
 The aim of this project is to allow [flowtype](https://flowtype.org/) checking of protobuf messages created using [protobufjs](https://github.com/dcodeIO/protobuf.js)
 
-This is achieved by generating modules that match the namespaces within your protobuf deinition which export the [protobufjs](https://github.com/dcodeIO/protobuf.js) builder for that namespace but also include all the nessisary flowtype annotations for the messages and enums declared in that namespace.
+This is achieved by generating modules that match the namespaces within your protobuf definition which export the [protobufjs](https://github.com/dcodeIO/protobuf.js) builder for that namespace but also include all the necessary flowtype annotations for the messages and enums declared in that namespace.
 
 The generated code has a runtime dependency on this module for flowtype checking only. The generated code includes the flowtype annotations inside special comment blocks so the code is fully ES5 compatible and doesn't require transpiling to run.
 
@@ -27,7 +27,7 @@ generate('src/proto', 'main.proto', 'proto');
 
 ## Example
 
-###main.proto
+### main.proto
 ```
 package foo;
 
@@ -45,7 +45,7 @@ message Chat {
 
 ```
 
-###generated code
+### generated code
 ```
 .
 ├── foo
@@ -57,7 +57,7 @@ message Chat {
 └── index.js
 ```
 
-###index.js
+### index.js
 ```
 // @flow
 Object.defineProperty(exports, "__esModule", {
@@ -98,7 +98,7 @@ const builder = exports.builder = ProtoBuf.loadJson(jsonDescriptor);
 exports.default = builder;
 ```
 
-###foo/index.js
+### foo/index.js
 ```
 // @flow
 Object.defineProperty(exports, "__esModule", {
@@ -154,7 +154,7 @@ exports.default = namespace; /*::
 export default namespace; */
 ```
 
-###Usage
+### Usage
 ```
 /* @flow */
 import {Chat, Greating} from './proto/foo';
@@ -166,7 +166,7 @@ const chat: Chat = new Chat({
 
 ```
 
-##Missing features
+## Missing features
 Currently doesn't support
 * Passing constructor arguments to protobufjs builders
 * service definitions
